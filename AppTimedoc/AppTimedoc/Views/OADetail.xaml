@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTimedoc.Views.OADetail">
+    <ContentPage.Content>
+    <StackLayout BackgroundColor="{StaticResource Accent}" Padding="5">
+      <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+        <Button x:Name="BtnOrder" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Auftrag"/>
+        <Button x:Name="btnCost" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Kostenträger"/>
+        <Button x:Name="btnAchievement" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Leistung"/>
+      </StackLayout>
+
+      <Label Text="Start" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Small"></Label>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <DatePicker x:Name="DateAchie1"></DatePicker>
+        <TimePicker x:Name="TimeAchie1"></TimePicker>
+        <Button x:Name="BtnStart1" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" FontSize="Small" TextColor="White" Text="Start"/>
+      </StackLayout>
+
+      <Label Text="Stopp" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Small"/>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"/>
+      <DatePicker x:Name="DateAchie2"/>
+      <TimePicker x:Name="TimeAchie2"/>
+      <Button x:Name="BtnStopp1" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" FontSize="Small" TextColor="White" Text="Stopp"/>
+
+
+      <Label Text="Menge (h)" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Small"/>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand"/>
+      <Entry x:Name="Menge1" Text="123.45" FontSize="Medium" Placeholder="Menge eingeben "  Keyboard="Numeric"/>
+      <Label Text="Verrechenbar (nein/ja)" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Small"/>
+      <Switch x:Name="SwitchVerrechenbar1" HorizontalOptions="EndAndExpand" IsToggled="False"/>
+
+
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Button x:Name="BtnInfo" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" FontSize="Small" TextColor="White" Text="Info erfassen"/>
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Button x:Name="btnSave" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_save_black_24dp.png" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="btnDelete" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_delete_black_24dp.png" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="btnAbort" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_arrow_back_black_24dp.png" HorizontalOptions="FillAndExpand"/>
+        <Button x:Name="btnSignature" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_border_color_black_24dp.png" HorizontalOptions="FillAndExpand"/>
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
