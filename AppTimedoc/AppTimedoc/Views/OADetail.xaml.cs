@@ -224,23 +224,22 @@ namespace AppTimedoc.Views
       }
     }
 
-    private void btnInfo_Clicked(object sender, EventArgs e)
+    private async void btnInfo_Clicked(object sender, EventArgs e)
     {
       try
       {
-        DependencyService.Get<IMessage>().ShortAlert("Muss noch implementiert werden.");
+        // DependencyService.Get<IMessage>().ShortAlert("Muss noch implementiert werden.");
 
-        //var modalPage = new CostSearch();
-        //modalPage.Disappearing += (sender2, e2) =>
-        //{
-        //  if (modalPage._costUnit != null)
-        //  {
-        //    _actOrderAchievement.IdCostUnit = modalPage._costUnit.Id;
-        //    _actOrderAchievement.CostNrDesc = modalPage._costUnit.BST + " " + modalPage._costUnit.Description;
-        //    SetData();
-        //  }
-        //};
-        //await Navigation.PushModalAsync(modalPage);
+        var modalPage = new EditorPage(_actOrderAchievement.Remark);
+        modalPage.Disappearing += (sender2, e2) =>
+        {
+          if (modalPage._remark != null)
+          {
+            _actOrderAchievement.Remark = modalPage._remark;
+            SetData();
+          }
+        };
+        await Navigation.PushModalAsync(modalPage);
 
       }
       catch (Exception ex)

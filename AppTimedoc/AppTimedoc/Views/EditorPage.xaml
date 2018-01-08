@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTimedoc.Views.EditorPage">
+    <ContentPage.Content>
+    <StackLayout Padding="5,10">
+      <Editor x:Name="EditorInfo" HeightRequest = "400" BackgroundColor="White"/>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Button x:Name="btnSave" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_save_black_24dp.png" HorizontalOptions="FillAndExpand" Clicked="btnSave_Clicked" >
+        </Button>
+        <Button x:Name="btnDelete" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_delete_black_24dp.png" HorizontalOptions="FillAndExpand" Clicked="btnDelete_Clicked" >
+        </Button>
+        <Button x:Name="btnAbort" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_arrow_back_black_24dp.png" HorizontalOptions="FillAndExpand" Clicked="btnAbort_Clicked" >
+        </Button>
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
