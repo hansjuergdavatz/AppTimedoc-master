@@ -13,8 +13,8 @@ using Xamarin.Forms.Xaml;
 namespace AppTimedoc.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Work : ContentPage
-	{
+  public partial class Work : ContentPage
+  {
     bool _setActDay = false;
     bool _hasCostUnit = false;
     bool _signatureAktiv = false;
@@ -207,6 +207,11 @@ namespace AppTimedoc.Views
 
         await LoadList(true);
 
+        //if (list != null)
+        //{
+        //  SetDisplayText();
+        //  OrderAchievementListView.ItemsSource = list;
+        //}
       }
       catch (Exception)
       {
@@ -232,7 +237,8 @@ namespace AppTimedoc.Views
         _actOrderAchievement = e.SelectedItem as OrderAchievement;
         if (_actOrderAchievement == null)
           return;
-        await Navigation.PushAsync(new WorkDetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
+//        await Navigation.PushAsync(new WorkDetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
+        await Navigation.PushAsync(new OADetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
 
       }
       catch (Exception ex)
@@ -261,6 +267,11 @@ namespace AppTimedoc.Views
 
         await LoadList(true);
 
+        //if (list != null)
+        //{
+        //  SetDisplayText();
+        //  OrderAchievementListView.ItemsSource = list;
+        //}
       }
       catch (Exception)
       {
@@ -272,5 +283,20 @@ namespace AppTimedoc.Views
 
     }
 
+
+    //private async void btnList_Clicked(object sender, EventArgs e)
+    //{
+    //    // TODO immer Detail-Liste
+    //    if (btnList.Text == "Detail")
+    //    {
+    //        await LoadList(true);
+    //        btnList.Text = "Komp.";
+    //    }
+    //    else
+    //    {
+    //        await LoadList(false);
+    //        btnList.Text = "Detail";
+    //    }
+    //}
   }
 }

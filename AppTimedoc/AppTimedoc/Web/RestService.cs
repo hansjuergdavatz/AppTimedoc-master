@@ -306,9 +306,6 @@ namespace AppTimedoc.Web
 
       try
       {
-        //var json = JsonConvert.SerializeObject(orderAchievement);
-        //var content = new StringContent(json, Encoding.UTF8, "application/json");
-
         HttpResponseMessage response = null;
 
         response = await client.DeleteAsync(uri);

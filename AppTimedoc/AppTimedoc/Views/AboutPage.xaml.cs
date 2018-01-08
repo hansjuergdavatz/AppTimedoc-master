@@ -16,5 +16,11 @@ namespace AppTimedoc.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+    private void BtnInfo_Clicked(object sender, EventArgs e)
+    {
+      Device.OpenUri(new Uri("http://www.timedoc.ch"));
+    }
+
+  }
 }

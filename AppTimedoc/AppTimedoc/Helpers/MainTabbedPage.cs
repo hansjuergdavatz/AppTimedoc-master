@@ -10,16 +10,17 @@ namespace AppTimedoc.Helpers
   {
     public MainTabbedPage()
     {
-      var playPage = new Time() { Title = "", Icon = null };
+      var playPage = new Time() { Title = "Zeiterfassung", Icon = null };
       var workPage = new NavigationPage(new Work() { Title = "Leistungserfassung", Icon = null });
-      var settingsPage = new AboutPage() { Title = "", Icon = null };
-      var aboutPage = new Login() { Title = "", Icon = null };
+      var settingsPage = new AboutPage() { Title = "Info", Icon = null };
+      var aboutPage = new Login() { Title = "Benutzer", Icon = null };
 
       switch (Device.RuntimePlatform)
       {
         case Device.iOS:
           playPage.Icon = "ic_access_time.png";
           workPage.Icon = "ic_list.png";
+          workPage.Title = "Leistungserfassung";
           settingsPage.Icon = "ic_error_outline.png";
           aboutPage.Icon = "ic_accessibility.png";
           break;

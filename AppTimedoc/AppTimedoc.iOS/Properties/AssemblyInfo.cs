@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AppTimedoc.iOS")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Timedoc")]
+[assembly: AssemblyDescription("Zeit und Leistungen verwalten")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Caprex GmbH")]
 [assembly: AssemblyProduct("AppTimedoc.iOS")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
