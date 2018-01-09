@@ -2,8 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTimedoc.Views.EditorPage">
-    <ContentPage.Content>
-    <StackLayout Padding="5,10">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness">
+      <On Platform="iOS" Value="5, 20, 5, 0" />
+      <On Platform="Android, UWP" Value="5, 10, 5, 0" />
+    </OnPlatform>
+  </ContentPage.Padding>
+
+  <ContentPage.Content>
+    <StackLayout>
       <Editor x:Name="EditorInfo" HeightRequest = "400" BackgroundColor="White"/>
       <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
         <Button x:Name="btnSave" BackgroundColor="Gray" TextColor="White" Text="" Image="ic_save_black_24dp.png" HorizontalOptions="FillAndExpand" Clicked="btnSave_Clicked" >
@@ -14,5 +21,6 @@
         </Button>
       </StackLayout>
     </StackLayout>
+    
   </ContentPage.Content>
 </ContentPage>

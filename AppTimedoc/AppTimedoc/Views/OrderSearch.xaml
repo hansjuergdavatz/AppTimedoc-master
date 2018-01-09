@@ -2,8 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTimedoc.Views.OrderSearch">
+
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness">
+      <On Platform="iOS" Value="5, 20, 5, 0" />
+      <On Platform="Android, UWP" Value="5, 10, 5, 0" />
+    </OnPlatform>
+  </ContentPage.Padding>
+
   <ContentPage.Content>
-    <StackLayout BackgroundColor="{StaticResource Accent}" Padding="20">
+    <StackLayout BackgroundColor="{StaticResource Accent}">
 
       <StackLayout Orientation="Vertical">
         <Label Text="Filter eingeben" TextColor="White" FontSize="Small"></Label>
