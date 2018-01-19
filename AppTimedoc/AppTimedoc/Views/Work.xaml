@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTimedoc.Views.Work">
   <StackLayout BackgroundColor="{StaticResource Accent}" Padding="20">
+    
+    <Button x:Name="btnConnect2" FontSize="20" TextColor="White" HorizontalOptions="Center" Text="" Clicked="btnConnect2_Clicked" />
 
     <StackLayout Orientation="Horizontal">
       <DatePicker x:Name="DayDate" DateSelected="DayDate_DateSelected">

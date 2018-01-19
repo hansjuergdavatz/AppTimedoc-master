@@ -1,6 +1,7 @@
 ﻿using AppTimedoc.Data;
 using AppTimedoc.Helpers;
 using AppTimedoc.Models;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using Xamarin.Forms.Xaml;
 
 namespace AppTimedoc.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+  [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class Work : ContentPage
   {
     bool _setActDay = false;
@@ -27,9 +28,9 @@ namespace AppTimedoc.Views
     {
       InitializeComponent();
 
-      //ReadSetting();
+      DayDate.Date = DateTime.Now;
+      _dateSelected = DayDate.Date;
 
-      SetUIHandlers();
     }
 
     private async void ReadSetting()
@@ -88,7 +89,8 @@ namespace AppTimedoc.Views
         if (_actOrderAchievement != null)
         {
           _setActDay = _actOrderAchievement.IsActDay;
-          DayDate.Date = _actOrderAchievement.DateTimeAchie; // DateTime.Now;
+          if (_setActDay)
+            DayDate.Date = DateTime.Now;
         }
 
         if (_dateSelected == DateTime.MinValue || _setActDay)
@@ -102,21 +104,14 @@ namespace AppTimedoc.Views
       }
     }
 
-    private async void SetUIHandlers()
-    {
-      DayDate.Date = DateTime.Now;
-      _dateSelected = DayDate.Date;
-
-      _user = await App.Database.GetCoworker();
-      if (_user != null)
-      {
-        ReadSetting();
-        await LoadList(true);
-      }
-    }
-
     async Task LoadList(bool detail)
     {
+      bool isOnline = await IsApiReachableAndRunning();
+      if (isOnline == false)
+      {
+        return;
+      }
+
       // Basic-http
       App.restManager = new RestManager(new Web.RestService());
 
@@ -237,7 +232,7 @@ namespace AppTimedoc.Views
         _actOrderAchievement = e.SelectedItem as OrderAchievement;
         if (_actOrderAchievement == null)
           return;
-//        await Navigation.PushAsync(new WorkDetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
+        //        await Navigation.PushAsync(new WorkDetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
         await Navigation.PushAsync(new OADetail(_actOrderAchievement, _hasCostUnit, _signatureAktiv));
 
       }
@@ -280,6 +275,50 @@ namespace AppTimedoc.Views
 
       waitCursor.IsVisible = false;
       waitCursor.IsRunning = false;
+
+    }
+
+    private async void btnConnect2_Clicked(object sender, EventArgs e)
+    {
+      bool isOnline = await IsApiReachableAndRunning();
+    }
+    public async Task<bool> IsApiReachableAndRunning()
+    {
+      try
+      {
+        var connectivity = CrossConnectivity.Current;
+        if (!connectivity.IsConnected)
+        {
+          btnConnect2.IsVisible = true;
+          btnConnect2.Text = "-- OFFLINE --";
+          btnConnect2.BackgroundColor = Color.Red;
+          return false;
+        }
+
+        /// <summary>
+        /// Tests if a remote host name is reachable (no http:// or www.)
+        /// </summary>
+        /// <param name="host">Host name can be a remote IP or URL of website</param>
+        /// <param name="port">Port to attempt to check is reachable.</param>
+        /// <param name="msTimeout">Timeout in milliseconds.</param>
+        /// <returns></returns>
+        var reachable = await connectivity.IsRemoteReachable("caprex.ddns.net", 5505, 2000);
+        if (reachable == false)
+        {
+          btnConnect2.IsVisible = true;
+          btnConnect2.Text = "-- TIMEDOC OFFLINE --";
+          btnConnect2.BackgroundColor = Color.Red;
+          return false;
+        }
+
+        btnConnect2.IsVisible = false;
+        return reachable;
+
+      }
+      finally
+      {
+        CrossConnectivity.Dispose();
+      }
 
     }
 

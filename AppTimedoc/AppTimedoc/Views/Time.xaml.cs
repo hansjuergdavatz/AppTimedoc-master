@@ -2,6 +2,7 @@
 using AppTimedoc.Helpers;
 using AppTimedoc.Models;
 using Java.Net;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,28 +15,28 @@ using Xamarin.Forms.Xaml;
 
 namespace AppTimedoc.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Time : ContentPage
-	{
+  [XamlCompilation(XamlCompilationOptions.Compile)]
+  public partial class Time : ContentPage
+  {
     DateTime _dateSelected = DateTime.MinValue;
     Coworker _user = null;
     List<WorkingTime> list = null;
     WorkingTime _actWorkingTime = null;
 
-    public Time ()
-		{
-			InitializeComponent ();
+    public Time()
+    {
+      InitializeComponent();
       SetUIHandlers();
     }
-    private async void SetUIHandlers()
+    private void SetUIHandlers()
     {
       DayDate.Date = DateTime.Now;
       _dateSelected = DayDate.Date;
 
-      _user = await App.Database.GetCoworker();
+      //_user = await App.Database.GetCoworker();
 
-      if (_user != null)
-        await LoadList(0);
+      //if (_user != null)
+      //  await LoadList(0);
     }
     protected async override void OnAppearing()
     {
@@ -58,11 +59,12 @@ namespace AppTimedoc.Views
 
     async Task LoadList(int typ)
     {
-      //if (CheckConnectivity() == false)
-      //{
-      //  WorkingTimeView.ItemsSource = null;
-      //  return;
-      //}
+      bool isOnline = await IsApiReachableAndRunning();
+      if (isOnline == false)
+      {
+        WorkingTimeView.ItemsSource = null;
+        return;
+      }
 
       // Basic-http
       App.restManager = new RestManager(new Web.RestService());
@@ -115,64 +117,48 @@ namespace AppTimedoc.Views
     }
 
 
-    public static bool isOnline()
+    public async Task<bool> IsApiReachableAndRunning()
     {
       try
       {
-        URLConnection urlConnection = new URL(Constants.RestUrl + "/ping").OpenConnection();
-        urlConnection.ReadTimeout = 400;
-        urlConnection.Connect();
-        return true;
+        var connectivity = CrossConnectivity.Current;
+        if (!connectivity.IsConnected)
+        {
+          btnConnect1.IsVisible = true;
+          btnConnect1.Text = "-- OFFLINE --";
+          btnConnect1.BackgroundColor = Color.Red;
+          return false;
+        }
+
+        /// <summary>
+        /// Tests if a remote host name is reachable (no http:// or www.)
+        /// </summary>
+        /// <param name="host">Host name can be a remote IP or URL of website</param>
+        /// <param name="port">Port to attempt to check is reachable.</param>
+        /// <param name="msTimeout">Timeout in milliseconds.</param>
+        /// <returns></returns>
+        var reachable = await connectivity.IsRemoteReachable("caprex.ddns.net", 5505, 2000);
+        if (reachable == false)
+        {
+          btnConnect1.IsVisible = true;
+          btnConnect1.Text = "-- TIMEDOC OFFLINE --";
+          btnConnect1.BackgroundColor = Color.Red;
+          return false;
+        }
+
+        btnConnect1.IsVisible = false;
+        return reachable;
+
       }
-      catch (Exception)
+      finally
       {
-        return false;
+        CrossConnectivity.Dispose();
       }
 
     }
-
-    // TCP/HTTP/DNS (depending on the port, 53=DNS, 80=HTTP, etc.)
-    public bool isOnline0()
+    private async void btnConnect1_Clicked(object sender, EventArgs e)
     {
-      try
-      {
-        int timeoutMs = 1500;
-        Socket sock = new Socket();
-        SocketAddress sockaddr = new InetSocketAddress("8.8.8.8", 53);
-
-        sock.Connect(sockaddr, timeoutMs);
-        sock.Close();
-
-        return true;
-      }
-      catch (IOException)
-      {
-        return false;
-      }
-    }
-
-    private bool CheckConnectivity()
-    {
-      var networkConnection = DependencyService.Get<INetworkConnection>();
-      networkConnection.CheckNetworkConnection();
-      var networkStatus = networkConnection.IsConnected;
-
-      networkStatus = isOnline();
-
-      //var isConnected = Plugin.Connectivity.CrossConnectivity.Current.IsConnected;
-      //var isConnected = DependencyService.Get<INetworkConnection>().IsConnected;
-      if (networkStatus)
-      {
-        lblConnect.IsVisible = true;
-        lblConnect.Text = "-- OFFLINE --";
-        lblConnect.BackgroundColor = Color.Red;
-        return true;
-      }
-      else
-      {
-        lblConnect.IsVisible = false;
-        return false;
-      }
+      bool isOnline = await IsApiReachableAndRunning();
     }
 
     private async void btnGo_Clicked(object sender, EventArgs e)

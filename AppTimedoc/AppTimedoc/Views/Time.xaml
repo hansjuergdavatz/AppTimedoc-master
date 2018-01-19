@@ -7,8 +7,8 @@
     <StackLayout Orientation="Horizontal">
       <Label Text="Datum: " FontSize="20" TextColor="White" VerticalOptions="Center"/>
       <DatePicker x:Name="DayDate" DateSelected="DayDate_DateSelected" />
-      <Label x:Name="lblConnect" FontSize="20" TextColor="White" VerticalOptions="Center" Text="" />
     </StackLayout>
+    <Button x:Name="btnConnect1" FontSize="20" TextColor="White" HorizontalOptions="Center" Text="" Clicked="btnConnect1_Clicked" />
 
     <Label Text="Einträge unter 1 Minute werden gelöscht" TextColor="White" FontSize="10"></Label>
 
