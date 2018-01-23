@@ -23,14 +23,16 @@ namespace AppTimedoc.Views
 
     private async void SetUIHandlers()
     {
-      var _user = await App.Database.GetCoworker();
+      //CoworkerStorage coStore = new CoworkerStorage();
+      //var user = coStore.LoadCoworker();
+      var user = await App.Database.GetCoworker();
 
-      if (_user == null)
+      if (user == null)
         btnLogin.Text = "Anmelden";
       else
       {
-        LoginId.Text = _user.LoginId;
-        Password.Text = _user.Password;
+        LoginId.Text = user.LoginId;
+        Password.Text = user.Password;
         btnLogin.Text = "Abmelden";
       }
     }
@@ -38,8 +40,10 @@ namespace AppTimedoc.Views
     {
       base.OnAppearing();
 
-      var _user = await App.Database.GetCoworker();
-      if (_user == null || _user.IsValid == false)
+      //CoworkerStorage coStore = new CoworkerStorage();
+      //var user = coStore.LoadCoworker();
+      var user = await App.Database.GetCoworker();
+      if (user == null || user.IsValid == false)
       {
         LoginId.Text = string.Empty;
         Password.Text = string.Empty;
@@ -51,7 +55,7 @@ namespace AppTimedoc.Views
     public async Task OnLogin(object o, EventArgs e)
     {
       CoworkerStorage coStore = new CoworkerStorage();
-      var user = await App.Database.GetCoworker();
+      var user = coStore.LoadCoworker();
       if (user == null)
       {
         Coworker coworker = new Coworker();
@@ -68,7 +72,10 @@ namespace AppTimedoc.Views
           coworker.Id = rc.Id;
           coworker.IdMandant = rc.IdMandant;
           coworker.IsValid = true;
+          
           coStore.SaveCoworker(coworker);
+          //var x = App.Database.SaveCoworkerAsync(coworker);
+
           btnLogin.Text = "Abmelden";
           DependencyService.Get<IMessage>().ShortAlert("Anmeldung erfolgreich.");
         }
@@ -81,6 +88,8 @@ namespace AppTimedoc.Views
         Password.Text = string.Empty;
         btnLogin.Text = "Anmelden";
         coStore.DeleteCoworker(user);
+        //var x = App.Database.DeleteCoworkerAsync(user);
+
       }
 
     }

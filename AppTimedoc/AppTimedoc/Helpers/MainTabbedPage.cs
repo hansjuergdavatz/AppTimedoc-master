@@ -10,38 +10,38 @@ namespace AppTimedoc.Helpers
   {
     public MainTabbedPage()
     {
-      var playPage = new Time() { Title = "Zeiterfassung", Icon = null };
+      var timePage = new Time() { Title = "Zeiterfassung", Icon = null };
       var workPage = new NavigationPage(new Work() { Title = "Leistungserfassung", Icon = null });
       var settingsPage = new AboutPage() { Title = "Info", Icon = null };
-      var aboutPage = new Login() { Title = "Benutzer", Icon = null };
+      var loginPage = new Login() { Title = "Benutzer", Icon = null };
 
       switch (Device.RuntimePlatform)
       {
         case Device.iOS:
-          playPage.Icon = "ic_access_time.png";
-          workPage.Icon = "ic_list.png";
+          timePage.Icon = "ic_access_time.png";
+          timePage.Icon = "ic_list.png";
           workPage.Title = "Leistungserfassung";
           settingsPage.Icon = "ic_error_outline.png";
-          aboutPage.Icon = "ic_accessibility.png";
+          loginPage.Icon = "ic_accessibility.png";
           break;
         case Device.Android:
-          playPage.Title = string.Empty;
-          playPage.Icon = "ic_access_time_black_24dp.png";
+          timePage.Title = string.Empty;
+          timePage.Icon = "ic_access_time_black_24dp.png";
           workPage.Title = string.Empty;
           workPage.Icon = "ic_list_black_24dp.png";
           settingsPage.Title = string.Empty;
           settingsPage.Icon = "ic_error_outline_black_24dp.png";
-          aboutPage.Title = string.Empty;
-          aboutPage.Icon = "ic_accessibility_black_24dp.png";
+          loginPage.Title = string.Empty;
+          loginPage.Icon = "ic_accessibility_black_24dp.png";
           break;
         default:
           break;
       }
 
-      Children.Add(playPage);
+      Children.Add(timePage);
       Children.Add(workPage);
       Children.Add(settingsPage);
-      Children.Add(aboutPage);
+      Children.Add(loginPage);
     }
 
     public void SwitchTab(int index)

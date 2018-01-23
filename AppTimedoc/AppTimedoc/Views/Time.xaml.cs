@@ -42,6 +42,8 @@ namespace AppTimedoc.Views
     {
       base.OnAppearing();
 
+      //CoworkerStorage coStore = new CoworkerStorage();
+      //_user = coStore.LoadCoworker();
       _user = await App.Database.GetCoworker();
 
       if (_user == null)

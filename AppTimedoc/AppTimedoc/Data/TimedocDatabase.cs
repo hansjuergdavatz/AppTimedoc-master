@@ -36,5 +36,10 @@ namespace AppTimedoc.Data
       }
     }
 
+    public Task<int> DeleteCoworkerAsync(Coworker item)
+    {
+      return database.DeleteAsync(item);
+    }
+
   }
 }
