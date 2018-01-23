@@ -16,6 +16,8 @@
       <Button x:Name="btnCome" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Kommen" Clicked="btnCome_Clicked"/>
       <Button x:Name="btnGo" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Gehen" Clicked="btnGo_Clicked"/>
     </StackLayout>
+    
+    <!--<ActivityIndicator x:Name="waitCursor" Color="Red" IsRunning="False" IsVisible="False" />-->
 
     <ListView x:Name="WorkingTimeView"
             ItemsSource="{Binding Path=WorkingTimes}"
@@ -32,6 +34,5 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-
   </StackLayout>
 </ContentPage>

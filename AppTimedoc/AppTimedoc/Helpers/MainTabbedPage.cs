@@ -19,7 +19,7 @@ namespace AppTimedoc.Helpers
       {
         case Device.iOS:
           timePage.Icon = "ic_access_time.png";
-          timePage.Icon = "ic_list.png";
+          workPage.Icon = "ic_list.png";
           workPage.Title = "Leistungserfassung";
           settingsPage.Icon = "ic_error_outline.png";
           loginPage.Icon = "ic_accessibility.png";

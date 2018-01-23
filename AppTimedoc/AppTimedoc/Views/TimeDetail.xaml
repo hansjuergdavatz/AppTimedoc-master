@@ -20,9 +20,9 @@
       <Entry x:Name="Remark" Text="" FontSize="Medium" />
 
       <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-        <Button x:Name="btnSave" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Speichern" Clicked="btnSave_Clicked"/>
-        <Button x:Name="btnDelete" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Löschen" Clicked="btnDelete_Clicked"/>
-        <Button x:Name="btnAbort" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="Zurück" Clicked="btnAbort_Clicked"/>
+        <Button x:Name="btnSave" Image="ic_save_black_24dp.png" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="" Clicked="btnSave_Clicked"/>
+        <Button x:Name="btnDelete" Image="ic_delete_black_24dp.png" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="" Clicked="btnDelete_Clicked"/>
+        <Button x:Name="btnAbort" Image="ic_arrow_back_black_24dp.png" HorizontalOptions="FillAndExpand" BackgroundColor="Gray" TextColor="White" Text="" Clicked="btnAbort_Clicked"/>
       </StackLayout>
 
     </StackLayout>

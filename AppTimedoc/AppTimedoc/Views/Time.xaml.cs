@@ -32,18 +32,11 @@ namespace AppTimedoc.Views
     {
       DayDate.Date = DateTime.Now;
       _dateSelected = DayDate.Date;
-
-      //_user = await App.Database.GetCoworker();
-
-      //if (_user != null)
-      //  await LoadList(0);
     }
     protected async override void OnAppearing()
     {
       base.OnAppearing();
 
-      //CoworkerStorage coStore = new CoworkerStorage();
-      //_user = coStore.LoadCoworker();
       _user = await App.Database.GetCoworker();
 
       if (_user == null)
@@ -67,6 +60,9 @@ namespace AppTimedoc.Views
         WorkingTimeView.ItemsSource = null;
         return;
       }
+
+      //waitCursor.IsVisible = true;
+      //waitCursor.IsRunning = true;
 
       // Basic-http
       App.restManager = new RestManager(new Web.RestService());
@@ -116,6 +112,10 @@ namespace AppTimedoc.Views
       {
         WorkingTimeView.ItemsSource = null;
       }
+
+      //waitCursor.IsVisible = false;
+      //waitCursor.IsRunning = false;
+
     }
 
 

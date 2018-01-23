@@ -23,8 +23,6 @@ namespace AppTimedoc.Views
 
     private async void SetUIHandlers()
     {
-      //CoworkerStorage coStore = new CoworkerStorage();
-      //var user = coStore.LoadCoworker();
       var user = await App.Database.GetCoworker();
 
       if (user == null)
@@ -40,8 +38,6 @@ namespace AppTimedoc.Views
     {
       base.OnAppearing();
 
-      //CoworkerStorage coStore = new CoworkerStorage();
-      //var user = coStore.LoadCoworker();
       var user = await App.Database.GetCoworker();
       if (user == null || user.IsValid == false)
       {
@@ -59,7 +55,6 @@ namespace AppTimedoc.Views
       if (user == null)
       {
         Coworker coworker = new Coworker();
-        // coworker.Id = Guid.NewGuid();
         coworker.LoginId = LoginId.Text;
         coworker.Password = Password.Text;
 
@@ -74,7 +69,6 @@ namespace AppTimedoc.Views
           coworker.IsValid = true;
           
           coStore.SaveCoworker(coworker);
-          //var x = App.Database.SaveCoworkerAsync(coworker);
 
           btnLogin.Text = "Abmelden";
           DependencyService.Get<IMessage>().ShortAlert("Anmeldung erfolgreich.");
@@ -88,8 +82,6 @@ namespace AppTimedoc.Views
         Password.Text = string.Empty;
         btnLogin.Text = "Anmelden";
         coStore.DeleteCoworker(user);
-        //var x = App.Database.DeleteCoworkerAsync(user);
-
       }
 
     }
