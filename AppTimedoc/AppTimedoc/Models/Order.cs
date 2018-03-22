@@ -15,5 +15,6 @@ namespace AppTimedoc.Models
     public string Remark { get; set; }
     public string TxtLarge { get; set; }
     public string TxtSmall { get; set; }
+    public string TxtSmall2 { get; set; }
   }
 }

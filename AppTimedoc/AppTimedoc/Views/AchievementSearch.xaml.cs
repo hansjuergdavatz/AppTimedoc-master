@@ -22,6 +22,11 @@ namespace AppTimedoc.Views
     {
       InitializeComponent();
     }
+    protected override void OnAppearing()
+    {
+      base.OnAppearing();
+      txtSearch.Focus();
+    }
 
     private async void btnSearch_Clicked(object sender, EventArgs e)
     {

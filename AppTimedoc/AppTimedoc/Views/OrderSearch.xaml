@@ -6,7 +6,7 @@
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="iOS" Value="5, 20, 5, 0" />
-      <On Platform="Android, UWP" Value="5, 10, 5, 0" />
+      <On Platform="Android, UWP" Value="1, 1, 1, 0" />
     </OnPlatform>
   </ContentPage.Padding>
 
@@ -25,14 +25,15 @@
 
       <ListView x:Name="OrderListView"
             ItemsSource="{Binding Path=Orders}"
-            ListView.RowHeight="60" ItemSelected="OrderListView_ItemSelected" >
+            ListView.RowHeight="80" ItemSelected="OrderListView_ItemSelected" >
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
               <StackLayout Orientation="Vertical">
                 <Entry Text="{Binding Id}" IsVisible="False"/>
-                <Label Text="{Binding TxtLarge}" FontSize="Medium" />
+                <Label Text="{Binding TxtLarge}" FontSize="Small" />
                 <Label Text="{Binding TxtSmall}" FontSize="Small" />
+                <Label Text="{Binding TxtSmall2}" FontSize="Small" />
               </StackLayout>
             </ViewCell>
           </DataTemplate>

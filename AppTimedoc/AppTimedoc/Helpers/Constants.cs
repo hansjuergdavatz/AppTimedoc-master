@@ -10,7 +10,7 @@ namespace AppTimedoc.Helpers
 #if DEBUG
     public static string RestUrl = "http://caprex.ddns.net:5509/api/";
 #else
-    public static string RestUrl = "https://www.timedoc.ch/RestService/api/";
+    public static string RestUrl = "https://www.timedoc.ch/API/api/";
 #endif
   }
 }

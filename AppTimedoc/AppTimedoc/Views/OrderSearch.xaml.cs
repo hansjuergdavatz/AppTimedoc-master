@@ -18,6 +18,11 @@ namespace AppTimedoc.Views
     List<Order> list = null;
     public Order _actOrder = null;
 
+    protected override void OnAppearing()
+    {
+      base.OnAppearing();
+      txtSearch.Focus();
+    }
 
     public OrderSearch()
     {
@@ -54,6 +59,7 @@ namespace AppTimedoc.Views
       {
         item.TxtLarge = item.OrderNumber;
         item.TxtSmall = item.Description;
+        item.TxtSmall2 = item.Remark;
       }
     }
 
