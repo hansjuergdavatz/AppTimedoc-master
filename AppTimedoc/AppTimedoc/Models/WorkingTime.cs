@@ -86,6 +86,9 @@ namespace AppTimedoc.Models
     public string TxtLarge { get; set; }
     public string TxtSmall { get; set; }
 
+    public string Longitude { get; set; }
+    public string Latitude { get; set; }
+
     //public event PropertyChangedEventHandler PropertyChanged;
     //private void OnPropertyChanged(string propertyName)
     //{

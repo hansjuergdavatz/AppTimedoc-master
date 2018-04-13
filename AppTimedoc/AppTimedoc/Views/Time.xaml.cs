@@ -3,6 +3,7 @@ using AppTimedoc.Helpers;
 using AppTimedoc.Models;
 using Java.Net;
 using Plugin.Connectivity;
+using Plugin.Geolocator;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -165,12 +166,38 @@ namespace AppTimedoc.Views
 
     private async void btnGo_Clicked(object sender, EventArgs e)
     {
+      try
+      {
+        var locator = CrossGeolocator.Current;
+        locator.DesiredAccuracy = 50;
+        TimeSpan timeOut = new TimeSpan(10000000);
+        var position = await locator.GetPositionAsync(timeOut);
+        _actWorkingTime.Longitude = position.Longitude.ToString();
+        _actWorkingTime.Latitude = position.Latitude.ToString();
+      }
+      catch (Exception)
+      {
+      }
+
       _actWorkingTime.GoTime = DateTime.Now;
       await LoadList(1);
     }
 
     private async void btnCome_Clicked(object sender, EventArgs e)
     {
+      try
+      {
+        var locator = CrossGeolocator.Current;
+        locator.DesiredAccuracy = 50;
+        TimeSpan timeOut = new TimeSpan(10000000);
+        var position = await locator.GetPositionAsync(timeOut);
+        _actWorkingTime.Longitude = position.Longitude.ToString();
+        _actWorkingTime.Latitude = position.Latitude.ToString();
+      }
+      catch (Exception)
+      {
+      }
+
       _actWorkingTime.ComeTime = DateTime.Now;
       await LoadList(1);
     }
